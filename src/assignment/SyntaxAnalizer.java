@@ -12,7 +12,7 @@ public class SyntaxAnalizer {
 
     LexicalAnalizer lx = new LexicalAnalizer();
 
-    public SyntaxAnalizer(String inputString) {
+    public void analizerSyntax(String inputString) {
         // TODO Auto-generated constructor stub
         String s = inputString;
         lx.getInputString(s);
@@ -120,7 +120,102 @@ public class SyntaxAnalizer {
         }
         while (0 < st.size()) {
             c = st.peek().toString();
+            if (lx.assignOpSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.identifierSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.lparantheseSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.rparantheseSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.incrementOpSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.identifierSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.sybolSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.numericalSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
             if (lx.biOperatorSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.identifierSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.sybolSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }////////////////////
+         while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.numericalSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.assignOpSet.contains(c)) {
                 st.pop();
             } else {
                 break;
@@ -153,6 +248,101 @@ public class SyntaxAnalizer {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.operatorSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.sybolSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.numericalSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.assignOpSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.identifierSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.keywordSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.sybolSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.numericalSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }//00000000000
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.assignOpSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.identifierSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.keywordSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.lparantheseSet.contains(c)) {
+                st.pop();
+            } else {
+                break;
+            }
+        }
+        while (0 < st.size()) {
+            c = st.peek().toString();
+            if (lx.methodDeclSet.contains(c)) {
                 st.pop();
             } else {
                 break;

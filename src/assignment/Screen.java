@@ -141,8 +141,8 @@ public class Screen extends javax.swing.JFrame {
         Set<Token> hs = new HashSet<>();
         hs.addAll(arrList);
        
-        SyntaxAnalizer obj = new SyntaxAnalizer(inputString);
-  
+        SyntaxAnalizer obj = new SyntaxAnalizer();
+        obj.analizerSyntax(inputString);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
