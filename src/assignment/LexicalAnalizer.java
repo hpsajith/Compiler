@@ -157,16 +157,13 @@ public class LexicalAnalizer {
 
         Pattern p1 = Pattern.compile("[A-Za-z]+");
         Matcher m1 = p1.matcher(str[0]);
+        String[] arr = null;
         while (m1.find()) {
             methodDeclaration = m1.group();
+        }
+        methodDeclarationList.add(new Token(Token.Type.METHODDECL,methodDeclaration));
 
-        }
-        methodDeclarationList.add(new Token(Token.Type.METHODDECL, methodDeclaration));
-        String[] stringArray = new String[1] ;
-        for (int i = 0; i < methodDeclarationList.size(); i++) {
-            stringArray[i] = methodDeclarationList.get(i).toString();
-        }
-        methodDeclSet = new HashSet<String>(Arrays.asList(stringArray));
+        methodDeclSet = new HashSet<String>(Arrays.asList(methodDeclaration));
         return methodDeclarationList;
     }
 
@@ -206,7 +203,7 @@ public class LexicalAnalizer {
                     Pattern p2 = Pattern.compile("[a-zA-Z]+");
                     Matcher m2 = p2.matcher(temp);
                     while (m2.find()) {
-                        identifierList.add(new Token(Token.Type.IDENTIFIER, m2.group()));
+                        identifierList.add(new Token(Token.Type.IDENTIFIER,m2.group()));
                     }
                     matched = true;
                 }
@@ -236,13 +233,13 @@ public class LexicalAnalizer {
 //        Set<String> set = new HashSet<String>(list);
         String[] stringArray = new String[numericals.size()];
         for (int i = 0; i < numericals.size(); i++) {
-            stringArray[i] = numericals.get(i).toString();
+            stringArray[i] = numericals.get(i).c;
         }
         numericalSet = new HashSet<String>(Arrays.asList(stringArray));
 
         String[] stringArray2 = new String[identifierList.size()];
         for (int i = 0; i < identifierList.size(); i++) {
-            stringArray2[i] = identifierList.get(i).toString();
+            stringArray2[i] = identifierList.get(i).c;
         }
 
         identifierSet = new HashSet<String>(Arrays.asList(stringArray2));

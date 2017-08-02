@@ -16,13 +16,6 @@ public class ParseTree {
     public ParseTree() {
         // TODO Auto-generated constructor stub
         System.out.println("Please Enter the Simple Assignment");
-        /*public final Set<String> keywordSet = new HashSet<String>(Arrays.asList(keywords));
-    public final Set<String> biOperatorSet = new HashSet<String>(Arrays.asList(biOperators));
-    public final Set<String> sybolSet = new HashSet<String>(Arrays.asList(syntax));
-    public final Set<String> lparantheseSet = new HashSet<String>(Arrays.asList(lparantheses));
-    public final Set<String> rparantheseSet = new HashSet<String>(Arrays.asList(rparantheses));
-    public final Set<String> operatorSet = new HashSet<String>(Arrays.asList(operators));
-         */
         String s = "Start{\n"
                 + "int a = 10;\n"
                 + "float c = 1;\n"
@@ -31,45 +24,52 @@ public class ParseTree {
                 + "a = a + c;\n"
                 + "}\n"
                 + "}";
-         lx.getInputString(s);
+        lx.getInputString(s);
         //Start{inta=10;floatc=1;for(intb=0;b<5;b++){a=a+c;}}
         s = s.replaceAll("\\s+", "");
         System.out.println(s);
         String c = "";
         Stack st = new Stack();
         String token = "";
-       
+
         for (int i = 0; i < s.length(); i++) {
-            token =String.valueOf(token + s.charAt(i));
-            System.out.println("*** : "+token.toString());
-            
-            if(lx.methodDeclSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
-            }else if(lx.lparantheseSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
-            }else if(lx.keywordSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
-            }else if(lx.identifierSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
-            }else if(lx.biOperatorSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
-            }else if(lx.numericalSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
-            }else if(lx.sybolSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
-            }else if(lx.operatorSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
-            }else if(lx.rparantheseSet.contains(token)){
-                 st.push(s.charAt(i));
-                 token="";
+            token = String.valueOf(token + s.charAt(i));
+            if (lx.methodDeclSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
+            } else if (lx.lparantheseSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
+            } else if (lx.keywordSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
+            } else if (lx.identifierSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
+            } else if (lx.biOperatorSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
+            } else if (lx.numericalSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
+            } else if (lx.sybolSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
+            } else if (lx.operatorSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
+            } else if (lx.rparantheseSet.contains(token)) {
+                System.out.println(token);
+                st.push(s.charAt(i));
+                token = "";
             }
         }
 
@@ -119,7 +119,7 @@ public class ParseTree {
                 break;
             }
         }
-         while (0 < st.size()) {
+        while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.biOperatorSet.contains(c)) {
                 k++;
@@ -128,7 +128,7 @@ public class ParseTree {
                 break;
             }
         }
-         while (0 < st.size()) {
+        while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.identifierSet.contains(c)) {
                 k++;
@@ -146,7 +146,7 @@ public class ParseTree {
                 break;
             }
         }
-         while (0 < st.size()) {
+        while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.lparantheseSet.contains(c)) {
                 k++;
@@ -155,7 +155,7 @@ public class ParseTree {
                 break;
             }
         }
-          while (0 < st.size()) {
+        while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.operatorSet.contains(c)) {
                 k++;
