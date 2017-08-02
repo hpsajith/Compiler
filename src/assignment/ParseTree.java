@@ -40,7 +40,9 @@ public class ParseTree {
         String token = "";
        
         for (int i = 0; i < s.length(); i++) {
-            token =token + s.charAt(i);
+            token =String.valueOf(token + s.charAt(i));
+            System.out.println("*** : "+token.toString());
+            
             if(lx.methodDeclSet.contains(token)){
                  st.push(s.charAt(i));
                  token="";
