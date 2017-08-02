@@ -162,7 +162,10 @@ public class LexicalAnalizer {
 
         }
         methodDeclarationList.add(new Token(Token.Type.METHODDECL, methodDeclaration));
-        String[] stringArray = Arrays.copyOf(methodDeclarationList.toArray(), methodDeclarationList.toArray().length, String[].class);
+        String[] stringArray = new String[1] ;
+        for (int i = 0; i < methodDeclarationList.size(); i++) {
+            stringArray[i] = methodDeclarationList.get(i).toString();
+        }
         methodDeclSet = new HashSet<String>(Arrays.asList(stringArray));
         return methodDeclarationList;
     }
@@ -231,11 +234,17 @@ public class LexicalAnalizer {
             }
         }
 //        Set<String> set = new HashSet<String>(list);
-
-        String[] stringArray = Arrays.copyOf(numericals.toArray(), numericals.toArray().length, String[].class);
+        String[] stringArray = new String[numericals.size()];
+        for (int i = 0; i < numericals.size(); i++) {
+            stringArray[i] = numericals.get(i).toString();
+        }
         numericalSet = new HashSet<String>(Arrays.asList(stringArray));
 
-        String[] stringArray2 = Arrays.copyOf(identifierList.toArray(), identifierList.toArray().length, String[].class);
+        String[] stringArray2 = new String[identifierList.size()];
+        for (int i = 0; i < identifierList.size(); i++) {
+            stringArray2[i] = identifierList.get(i).toString();
+        }
+
         identifierSet = new HashSet<String>(Arrays.asList(stringArray2));
         return identifierList;
     }
