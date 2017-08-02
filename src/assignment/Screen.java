@@ -119,6 +119,7 @@ public class Screen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        char[] inputChars =  textString.getText().toCharArray();
         jTextArea1.setText("");
+        System.out.println("sdffdddddddd");
         String inputString =  textString.getText();
         LexicalAnalizer lx = new LexicalAnalizer();
         ArrayList<Token> arrList = new ArrayList<Token>();       
