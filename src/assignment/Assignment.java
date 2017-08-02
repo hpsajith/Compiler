@@ -15,8 +15,8 @@ public class Assignment {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        Screen scr = new Screen();
-//        scr.setVisible(true);
+        Screen scr = new Screen();
+        scr.setVisible(true);
     }
     
 }

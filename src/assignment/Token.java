@@ -15,7 +15,7 @@ package assignment;
         // open parens, close parens, and an "atom" type
 // This Scheme-like language has three token types:
         // open parens, close parens, and an "atom" type
-        METHODDECL,OPERATOR,SYNTAX,BINOPERATION,KEYWORD,LPAREN, RPAREN, IDENTIFIER,NUMERICS;
+        ASSIGNOP,INCREMENTOP,METHODDECL,OPERATOR,SYNTAX,BINOPERATION,KEYWORD,LPAREN, RPAREN, IDENTIFIER,NUMERICS;
     }
         public final Type t;
         public final String c; // contents mainly for atom tokens
@@ -51,6 +51,12 @@ package assignment;
             }
             if(t == Type.METHODDECL) {
                 return "METHODDECL  <" + c + ">";
+            }
+            if(t == Type.INCREMENTOP) {
+                return "INCREMENTOP  <" + c + ">";
+            }
+            if(t == Type.ASSIGNOP) {
+                return "ASSIGNOP  <" + c + ">";
             }
             return t.toString();
         }

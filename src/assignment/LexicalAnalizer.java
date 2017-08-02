@@ -28,10 +28,14 @@ public class LexicalAnalizer {
     ArrayList<Token> identifierList = new ArrayList<Token>();
     ArrayList<Token> numericals = new ArrayList<Token>();
     ArrayList<Token> methodDeclarationList = new ArrayList<Token>();
+    ArrayList<Token> incrementOpList = new ArrayList<Token>();
+    ArrayList<Token> assignOpList = new ArrayList<Token>();
 //    ArrayList<String> matchedList = new ArrayList<String>();
     private String[] keywords = {"int", "float"};
-    private String[] biOperators = {"=", "+", "++", "<", ">"};
+    private String[] biOperators = {"+", "<", ">"};
     private String[] syntax = {";"};
+    private String[] incrementOp = {"++"};
+    private String[] assignOp = {"="};
     private String[] lparantheses = {"(", "{"};
     private String[] rparantheses = {")", "}"};
     private String[] operators = {"for"};
@@ -41,6 +45,8 @@ public class LexicalAnalizer {
     public Set<String> lparantheseSet = new HashSet<String>(Arrays.asList(lparantheses));
     public Set<String> rparantheseSet = new HashSet<String>(Arrays.asList(rparantheses));
     public Set<String> operatorSet = new HashSet<String>(Arrays.asList(operators));
+    public Set<String> incrementOpSet = new HashSet<String>(Arrays.asList(incrementOp));
+    public Set<String> assignOpSet = new HashSet<String>(Arrays.asList(assignOp));
     public Set<String> identifierSet = new HashSet<String>();
     public Set<String> methodDeclSet = new HashSet<String>();
     public Set<String> numericalSet = new HashSet<String>();
@@ -55,6 +61,8 @@ public class LexicalAnalizer {
         tokonizeSyntax(inputString);
         tokonizeKeyWords(inputString);
         tokonizeBinaryOperation(inputString);
+        tokonizeAssignOperation(inputString);
+        tokonizeIncrementOperation(inputString);
         tokonizeOperator(inputString);
         tokonizeIdentifiers(inputString);
 
@@ -83,6 +91,14 @@ public class LexicalAnalizer {
             System.out.println(t.toString());
         }
         for (Token t : numericals) {
+            arrList.add(t);
+            System.out.println(t.toString());
+        }
+         for (Token t : incrementOpList) {
+            arrList.add(t);
+            System.out.println(t.toString());
+        }
+        for (Token t : assignOpList) {
             arrList.add(t);
             System.out.println(t.toString());
         }
@@ -116,7 +132,7 @@ public class LexicalAnalizer {
         for (int i = 0; i < inputString.length(); i++) {
             if (biOperatorSet.contains(inputString.charAt(i) + "")) {
                 if (biOperatorSet.contains(inputString.charAt(i + 1) + "")) {
-                    binaryOperation.add(new Token(Token.Type.BINOPERATION, inputString.charAt(i) + "" + inputString.charAt(i + 1) + ""));
+                    incrementOpList.add(new Token(Token.Type.INCREMENTOP, inputString.charAt(i) + "" + inputString.charAt(i + 1) + ""));
                 }
                 binaryOperation.add(new Token(Token.Type.BINOPERATION, inputString.charAt(i) + ""));
             }
@@ -161,7 +177,7 @@ public class LexicalAnalizer {
         while (m1.find()) {
             methodDeclaration = m1.group();
         }
-        methodDeclarationList.add(new Token(Token.Type.METHODDECL,methodDeclaration));
+        methodDeclarationList.add(new Token(Token.Type.METHODDECL, methodDeclaration));
 
         methodDeclSet = new HashSet<String>(Arrays.asList(methodDeclaration));
         return methodDeclarationList;
@@ -177,7 +193,6 @@ public class LexicalAnalizer {
             for (int j = 0; j < str[i].length(); j++) {
                 matched = false;
                 temp = temp + str[i].charAt(j) + "";
-
             }
             for (String s : lparantheseSet) {
 
@@ -203,7 +218,19 @@ public class LexicalAnalizer {
                     Pattern p2 = Pattern.compile("[a-zA-Z]+");
                     Matcher m2 = p2.matcher(temp);
                     while (m2.find()) {
-                        identifierList.add(new Token(Token.Type.IDENTIFIER,m2.group()));
+                        identifierList.add(new Token(Token.Type.IDENTIFIER, m2.group()));
+                    }
+                    matched = true;
+                }
+            }
+            
+             for (String s : assignOpSet) {
+
+                if (temp.contains(s)) {
+                    Pattern p2 = Pattern.compile("[a-zA-Z]+");
+                    Matcher m2 = p2.matcher(temp);
+                    while (m2.find()) {
+                        identifierList.add(new Token(Token.Type.IDENTIFIER, m2.group()));
                     }
                     matched = true;
                 }
@@ -244,6 +271,26 @@ public class LexicalAnalizer {
 
         identifierSet = new HashSet<String>(Arrays.asList(stringArray2));
         return identifierList;
+    }
+
+    private ArrayList<Token> tokonizeAssignOperation(String inputString) {
+        for (int i = 0; i < inputString.length(); i++) {
+            if (assignOpSet.contains(inputString.charAt(i) + "")) {
+                assignOpList.add(new Token(Token.Type.ASSIGNOP, inputString.charAt(i) + ""));
+            }
+        }
+        return assignOpList;
+    }
+
+    private ArrayList<Token> tokonizeIncrementOperation(String inputString) {
+        for (int i = 0; i < inputString.length(); i++) {
+            if (incrementOpSet.contains(inputString.charAt(i) + "")) {
+                if (incrementOpSet.contains(inputString.charAt(i+1) + "")) {
+                    incrementOpList.add(new Token(Token.Type.INCREMENTOP, inputString.charAt(i) + ""));
+                }
+            }
+        }
+        return incrementOpList;
     }
 
 }

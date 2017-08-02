@@ -8,24 +8,14 @@ package assignment;
 import java.util.Set;
 import java.util.Stack;
 
-public class ParseTree {
+public class SyntaxAnalizer {
 
     LexicalAnalizer lx = new LexicalAnalizer();
-    int k = 0;
 
-    public ParseTree() {
+    public SyntaxAnalizer(String inputString) {
         // TODO Auto-generated constructor stub
-        System.out.println("Please Enter the Simple Assignment");
-        String s = "Start{\n"
-                + "int a = 10;\n"
-                + "float c = 1;\n"
-                + "for(int b = 0; b < 5; b++)\n"
-                + "{\n"
-                + "a = a + c;\n"
-                + "}\n"
-                + "}";
+        String s = inputString;
         lx.getInputString(s);
-        //Start{inta=10;floatc=1;for(intb=0;b<5;b++){a=a+c;}}
         s = s.replaceAll("\\s+", "");
         System.out.println(s);
         String c = "";
@@ -36,39 +26,53 @@ public class ParseTree {
             token = String.valueOf(token + s.charAt(i));
             if (lx.methodDeclSet.contains(token)) {
                 System.out.println(token);
-                st.push(s.charAt(i));
+                st.push(token);
                 token = "";
             } else if (lx.lparantheseSet.contains(token)) {
                 System.out.println(token);
-                st.push(s.charAt(i));
+                st.push(token);
                 token = "";
             } else if (lx.keywordSet.contains(token)) {
                 System.out.println(token);
-                st.push(s.charAt(i));
+                st.push(token);
                 token = "";
             } else if (lx.identifierSet.contains(token)) {
                 System.out.println(token);
-                st.push(s.charAt(i));
+                st.push(token);
                 token = "";
             } else if (lx.biOperatorSet.contains(token)) {
-                System.out.println(token);
-                st.push(s.charAt(i));
-                token = "";
+                if (lx.incrementOpSet.contains(token + s.charAt(i + 1))) {
+                } else {
+                    System.out.println(token);
+                    st.push(token);
+                    token = "";
+                }
             } else if (lx.numericalSet.contains(token)) {
-                System.out.println(token);
-                st.push(s.charAt(i));
-                token = "";
+                if (lx.numericalSet.contains(token + s.charAt(i + 1))) {
+                } else {
+                    System.out.println(token);
+                    st.push(token);
+                    token = "";
+                }
             } else if (lx.sybolSet.contains(token)) {
                 System.out.println(token);
-                st.push(s.charAt(i));
+                st.push(token);
                 token = "";
             } else if (lx.operatorSet.contains(token)) {
                 System.out.println(token);
-                st.push(s.charAt(i));
+                st.push(token);
                 token = "";
             } else if (lx.rparantheseSet.contains(token)) {
                 System.out.println(token);
-                st.push(s.charAt(i));
+                st.push(token);
+                token = "";
+            } else if (lx.assignOpSet.contains(token)) {
+                System.out.println(token);
+                st.push(token);
+                token = "";
+            } else if (lx.incrementOpSet.contains(token)) {
+                System.out.println(token);
+                st.push(token);
                 token = "";
             }
         }
@@ -76,7 +80,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.rparantheseSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -86,7 +89,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.sybolSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -95,7 +97,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.identifierSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -104,7 +105,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.biOperatorSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -113,7 +113,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.identifierSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -122,7 +121,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.biOperatorSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -131,7 +129,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.identifierSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -140,7 +137,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.keywordSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -149,7 +145,6 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.lparantheseSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
@@ -158,21 +153,10 @@ public class ParseTree {
         while (0 < st.size()) {
             c = st.peek().toString();
             if (lx.operatorSet.contains(c)) {
-                k++;
                 st.pop();
             } else {
                 break;
             }
         }
-        if (k == s.length()) {
-            System.out.println(" You Entered " + s + "  which is" + " Syntactically TRUE");
-        } else {
-            System.out.println(" You Entered " + s + "  which is" + " Syntactically FALSE");
-        }
-    }
-
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        new ParseTree();
     }
 }
