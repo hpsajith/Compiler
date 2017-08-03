@@ -518,7 +518,7 @@ public class SyntaxAnalizer {
             }
         }
         System.out.println("Syntax done.."+status);
-
+        System.out.println("");
 
 
     }
