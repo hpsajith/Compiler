@@ -41,10 +41,18 @@ public class SyntaxAnalizer {
         return false;
     }
     private boolean expression(Token literal,Token assignOp,Token numeric) {
-        
+        status = numeric(literal) && assignopera(assignOp) && literal(numeric) ;
         return false;
     }
-
+    private boolean numeric(Token numeric) {
+        return false;
+    }
+    private boolean literal(Token numeric) {
+        return false;
+    }
+    private boolean assignopera(Token assignop) {
+        return false;
+    }
 
     public boolean syntaxParse(Stack st) {
 
