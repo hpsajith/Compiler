@@ -142,7 +142,12 @@ public class Screen extends javax.swing.JFrame {
         hs.addAll(arrList);
        
         SyntaxAnalizer obj = new SyntaxAnalizer();
-        obj.analizerSyntax(inputString);
+        boolean status =  obj.analizerSyntax(inputString);
+        if(status){
+        jTextArea1.setText("PROGRAM SYNTACTICALLY CORRECT");
+        }else{
+        jTextArea1.setText("PROGRAM SYNTACTICALLY INCORRECT");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
