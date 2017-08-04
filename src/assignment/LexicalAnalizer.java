@@ -33,7 +33,7 @@ public class LexicalAnalizer {
 //    ArrayList<String> matchedList = new ArrayList<String>();
     private String[] keywords = {"int", "float"};
     private String[] biOperators = {"+", "<", ">"};
-    private String[] syntax = {";"};
+    private String[] sybols = {";"};
     private String[] incrementOp = {"++"};
     private String[] assignOp = {"="};
     private String[] lparantheses = {"(", "{"};
@@ -41,7 +41,7 @@ public class LexicalAnalizer {
     private String[] operators = {"for"};
     public Set<String> keywordSet = new HashSet<String>(Arrays.asList(keywords));
     public Set<String> biOperatorSet = new HashSet<String>(Arrays.asList(biOperators));
-    public Set<String> sybolSet = new HashSet<String>(Arrays.asList(syntax));
+    public Set<String> sybolSet = new HashSet<String>(Arrays.asList(sybols));
     public Set<String> lparantheseSet = new HashSet<String>(Arrays.asList(lparantheses));
     public Set<String> rparantheseSet = new HashSet<String>(Arrays.asList(rparantheses));
     public Set<String> operatorSet = new HashSet<String>(Arrays.asList(operators));
