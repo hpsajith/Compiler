@@ -138,10 +138,8 @@ public class SyntaxAnalizer {
         while (0 < expression.size()) {
             if (!statement && statement(expression)) {
                 statement = true;
-//                st.pop();
             } else if (!variableDeclaration && variableDeclaration(expression)) {
                 variableDeclaration = true;
-//                st.pop();
             } else {
                 break;
             }
